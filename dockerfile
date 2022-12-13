@@ -14,13 +14,13 @@ LABEL \
     org.opencontainers.image.created="2020-11-13 00:00:00+00:00" \
     maintainer="Weblogic-docker"
 
-# Configuration Weblogic admin server
+# Configuration network
 ENV NET_ADAPTER eth0
 ENV HOST_ADDR localhost
 ENV HOST_CONF_PORT 7001
 EXPOSE 7001/tcp
 
-#install modules
+# install java 
 RUN yum -y install java-1.7.0-openjdk-devel
 
 # Volume
