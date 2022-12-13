@@ -1,18 +1,7 @@
 # Pull the minimal CentOS image
-FROM scratch
-ADD centos-7-x86_64-docker.tar.xz /
+FROM centos:centos7.9.2009
 ENV container docker
-LABEL \
-    org.label-schema.schema-version="1.0" \
-    org.label-schema.name="CentOS Base Image" \
-    org.label-schema.vendor="CentOS" \
-    org.label-schema.license="GPLv2" \
-    org.label-schema.build-date="20201113" \
-    org.opencontainers.image.title="CentOS Base Image" \
-    org.opencontainers.image.vendor="CentOS" \
-    org.opencontainers.image.licenses="GPL-2.0-only" \
-    org.opencontainers.image.created="2020-11-13 00:00:00+00:00" \
-    maintainer="Weblogic-docker"
+LABEL maintainer="Weblogic-docker"
 
 # Configuration network
 ENV NET_ADAPTER eth0
@@ -32,9 +21,14 @@ RUN mkdir -p /opt/hcfb/weblogic
 # CP
 COPY wls1036_generic.jar /opt/hcfb/weblogic
 COPY install.sh /opt/hcfb/weblogic
+COPY test.py /opt/hcfb/weblogic
 
 # install Weblogic
 RUN chmod +x /opt/hcfb/weblogic/install.sh
 RUN /opt/hcfb/weblogic/install.sh
 
-CMD ["/usr/sbin/init"]
+# install Domain
+RUN /opt/hcfb/weblogic/Oracle/Middleware/wlserver_10.3/common/bin/wlst.sh /opt/hcfb/weblogic/test.py
+
+# Start weblogic
+CMD /opt/hcfb/weblogic/domains/test/startWebLogic.sh
