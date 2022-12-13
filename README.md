@@ -9,3 +9,7 @@ Ver. Weblogic Oracle WebLogic Server 10.3.6
 3) CP wls1036_generic.jar to project dir
 4) cd weblogic-docker
 5) docker build -t weblogic:(Name Host) . 
+
+
+# Start Project
+docker run -d --rm -p 7001:7001 weblogic:(HOSTNAME)

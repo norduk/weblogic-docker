@@ -18,7 +18,7 @@ LABEL \
 ENV NET_ADAPTER eth0
 ENV HOST_ADDR localhost
 ENV HOST_CONF_PORT 7001
-EXPOSE 7001/tcp
+EXPOSE 7001
 
 # install java 
 RUN yum -y install java-1.7.0-openjdk-devel
