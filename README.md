@@ -1,6 +1,7 @@
 # weblogic-docker
-
 Test Project for HCFB 
+
+Ver. Weblogic Oracle WebLogic Server 10.3.6
 
 # Install
 1) clone project 
